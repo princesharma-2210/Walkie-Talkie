@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
-import { protectRoute } from "../middleware/auth.middleware.js";
+// import { protectRoute } from "../middleware/auth.middleware.js";
 import dotenv from "dotenv";
 dotenv.config();
 
