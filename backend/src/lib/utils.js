@@ -14,7 +14,7 @@ export const generateToken =(userId,res)=>{
     res.cookie("jwt", token, {
         httpOnly: true,
         secure: false,         // ✅ use true only in production (HTTPS)
-        sameSite: "lax",       // ✅ allows sending from different port (e.g. 5173 -> 5000)
+        sameSite: "lax",       // ✅ allows sending from different port (e.g. 5173 -> 4000)
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
       
