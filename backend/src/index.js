@@ -7,9 +7,9 @@ import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
 dotenv.config();
 import cors from "cors"
+import {app,server} from "./lib/socket.js"
 
 
-const app= express();
 app.use(express.json()); 
 app.use(cookieParser());
 const port = process.env.PORT;
@@ -20,10 +20,11 @@ app.use(cors({
 })
 );
 
-app.listen(port,()=>{
+app.use("/api/auth",authRoutes);
+app.use("/api/messages",messageRoutes)
+
+server.listen(port,()=>{
     console.log("connection on port:"+port)
     connectDB(); 
 })
 
-app.use("/api/auth",authRoutes);
-app.use("/api/messages",messageRoutes)

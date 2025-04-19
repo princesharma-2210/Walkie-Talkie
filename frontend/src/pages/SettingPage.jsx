@@ -4,8 +4,8 @@ import { useThemeStore } from "../store/useThemeStore";
 
 
 const PREVIEW_MESSAGES = [
-  { id: 1, content: "Hey! How's it going?", isSent: false },
-  { id: 2, content: "I'm doing great! Just working on some new features.", isSent: true },
+  { id: 1, content: "Hey! How's it going Ronnie?", isSent: false },
+  { id: 2, content: "I'm doing great! Just working on some new technology.", isSent: true },
 ];
 
 const SettingsPage = () => {
@@ -59,7 +59,7 @@ const SettingsPage = () => {
                       J
                     </div>
                     <div>
-                      <h3 className="font-medium text-sm">John Doe</h3>
+                      <h3 className="font-medium text-sm">Ronnie</h3>
                       <p className="text-xs text-base-content/70">Online</p>
                     </div>
                   </div>
