@@ -1,14 +1,16 @@
 import { useState } from "react";
+import React, { useRef } from 'react';
 import { useAuthStore } from "../store/useAuthStore";
 import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import AuthImagePattern from "../components/AuthImagePattern";
 // import AuthImagePattern from "../components/AuthImagePattern.jsx";
-
+import emailjs from '@emailjs/browser';
 
 
 const SignUpPage = () => {
+  const form = useRef();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -29,11 +31,25 @@ const SignUpPage = () => {
   };
 
   const handleSubmit = (e) => {
+    
     e.preventDefault();
 
     const success = validateForm();
-
+    
     if (success === true) signup(formData);
+
+    emailjs
+      .sendForm('service_b45s6vb', 'template_xvadfek', form.current, {
+        publicKey: '1v3yeDDsRGe8w1eLz',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
   };
 
   return (
@@ -55,7 +71,7 @@ const SignUpPage = () => {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form ref={form} onSubmit={handleSubmit} className="space-y-6">
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Full Name</span>
@@ -69,6 +85,7 @@ const SignUpPage = () => {
                   className={`input input-bordered w-full pl-10`}
                   placeholder="Prince Sharma"
                   value={formData.fullName}
+                  name="from_Name"
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                 />
               </div>
@@ -87,6 +104,7 @@ const SignUpPage = () => {
                   className={`input input-bordered w-full pl-10`}
                   placeholder="princesharma@gmail.com"
                   value={formData.email}
+                  name="from_Email"
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
