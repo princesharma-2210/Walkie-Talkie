@@ -15,7 +15,7 @@ const LoginPage = () => {
   
     const { login, isLoggingIn } = useAuthStore();
 
-    const handleSubmit= async(e)=>{
+    const HandleSubmit= async(e)=>{
       e.preventDefault();
       login(formData);
     }
@@ -39,7 +39,7 @@ const LoginPage = () => {
                 </div>
               </div>
     
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={HandleSubmit} className="space-y-6">
                 
     
                 <div className="form-control">
